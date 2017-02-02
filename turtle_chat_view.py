@@ -1,12 +1,16 @@
 #2016-2017 PERSONAL PROJECTS: TurtleChat!
 #WRITE YOUR NAME HERE!
-
+GeorgeRashed
 #####################################################################################
 #                                   IMPORTS                                         #
 #####################################################################################
 #import the turtle module
+import turtle
+##from abc import ABCMeta , abstractmethod
 #import the Client class from the turtle_chat_client module
+from turtle_chat_client import Client 
 #Finally, from the turtle_chat_widgets module, import two classes: Button and TextInput
+from  turtle_chat_widgets import Button , TextInput 
 #####################################################################################
 #####################################################################################
 
@@ -14,11 +18,19 @@
 #                                   TextBox                                         #
 #####################################################################################
 #Make a class called TextBox, which will be a subclass of TextInput.
+class TextBox(TextInput):
 #Because TextInput is an abstract class, you must implement its abstract
 #methods.  There are two:
 #
-#draw_box
-#write_msg
+#draw_box\
+    def draw_box(self):
+        self.pos=(-200,-100)
+        turtle.hideturtle()
+        
+        
+        
+#write_msg      
+    def write_msg(self):
 #
 #Hints:
 #1. in draw_box, you will draw (or stamp) the space on which the user's input
