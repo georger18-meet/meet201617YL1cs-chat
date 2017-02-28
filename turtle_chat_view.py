@@ -54,9 +54,6 @@ class TextBox(TextInput):
 #   and you can erase that text using
 #
 #   self.writer.clear()
-    def clear_msg(self):
-        self.new_msg=''
-        self.write_msg()
 #
 #3. If you want to make a newline character (i.e. go to the next line), just add
 #   \r to your string.  Test it out at the Python shell for practice
@@ -70,7 +67,14 @@ class TextBox(TextInput):
 #Button is an abstract class with one abstract method: fun.
 #fun gets called whenever the button is clicked.  It's jobs will be to
 class SendButton(Button):
+    def __init__(self,my_turtle=None,shape=None,pos=(0,0),view=None):
+        super(SendButton,self).__init__(my_turtle,shape,pos)
+        self.view=view
+
     def fun(self,x=None,y=None):
+        self.view.send_msg()
+            
+        
 # 1. send a message to the other chat participant - to do this,
 #    you will need to call the send method of your Client instance
 # 2. update the messages that you see on the screen
