@@ -24,23 +24,26 @@ class TextBox(TextInput):
 #
 #draw_box\
     def draw_box(self):
-        self.pos=(-100,-100)
+        self.pos=(-200,-100)
         turtle.hideturtle()
+        turtle.bgcolor("Orange")
         self.writer.hideturtle()
         self.writer=turtle.clone()
         self.writer.penup()
         self.writer.goto(self.pos)
+        self.writer.color("Blue")
         self.writer.pendown()
         self.writer.goto(self.width,-100)
         self.writer.goto(self.width,self.height)
-        self.writer.goto(-100,self.height)
+        self.writer.goto(-200,self.height)
         self.writer.goto(self.pos)
         self.writer.penup()
+
 #write_msg      
     def write_msg(self):
-        self.setup_listeners()
+        slef.writer.penup()
         self.writer.goto(-self.width/2+10+self.pos[0],self.pos[1]-self.height/2+20)
-        self.writer.clear_msg()
+        self.writer.clear()
         self.writer(self.new_msg)
 
 #Hints:
@@ -147,6 +150,8 @@ class View:
         #Create a TextBox instance and a SendButton instance and
         #Store them inside of this instance
         ###
+##        self.sendbutton=SendButton(self,
+                                   
 
         ###
         #Call your setup_listeners() function, if you have one,
