@@ -24,24 +24,25 @@ class TextBox(TextInput):
 #
 #draw_box\
     def draw_box(self):
-        self.pos=(-200,-200)
+        self.pos=(-100,-100)
         turtle.hideturtle()
         self.writer.hideturtle()
         self.writer=turtle.clone()
         self.writer.penup()
         self.writer.goto(self.pos)
         self.writer.pendown()
-        self.writer.goto(self.width,-200)
+        self.writer.goto(self.width,-100)
         self.writer.goto(self.width,self.height)
-        self.writer.goto(-200,self.height)
+        self.writer.goto(-100,self.height)
         self.writer.goto(self.pos)
         self.writer.penup()
 #write_msg      
     def write_msg(self):
+        self.setup_listeners()
         self.writer.goto(-self.width/2+10+self.pos[0],self.pos[1]-self.height/2+20)
-        self.writer.pendown()
-        self.writer(self.get_msg)
-#
+        self.writer.clear_msg()
+        self.writer(self.new_msg)
+
 #Hints:
 #1. in draw_box, you will draw (or stamp) the space on which the user's input
 #will appear.
