@@ -43,9 +43,10 @@ class TextBox(TextInput):
 #write_msg      
     def write_msg(self):
         self.writer.penup()
+        self.writer.write('')
         self.writer.goto(-self.width/2+10+self.pos[0],self.pos[1]-self.height/2+20)
         self.writer.clear()
-        self.writer(self.new_msg)
+
 
 #Hints:
 #1. in draw_box, you will draw (or stamp) the space on which the user's input
@@ -214,7 +215,7 @@ class View:
     
 
     def setup_listeners(self):
-        setup_listeners()
+        self.setup_listeners()
         turtle.onkeypress(self.send_btn.fun)
         turtle.listen()
 
