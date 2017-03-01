@@ -159,6 +159,7 @@ class View:
         #
         #at the Python shell.
         ###
+        turtle.setup(width=0.5,height=0.75,startx=0,starty=0)
 
         ###
         #This list will store all of the messages.
@@ -168,6 +169,8 @@ class View:
         #   self.msg_queue.append(a_msg_string)
         self.msg_queue=[]
         ###
+##        self.msg_queue.insert(0,a_msg_string)
+##        self.msg_queue.append(a_msg_string)
 
         ###
         #Create one turtle object for each message to display.
@@ -211,6 +214,11 @@ class View:
     
 
     def setup_listeners(self):
+        setup_listeners()
+        turtle.onkeypress(self.send_btn.fun)
+        turtle.listen()
+
+        
         '''
         Set up send button - additional listener, in addition to click,
         so that return button will send a message.
