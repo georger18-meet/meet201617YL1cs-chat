@@ -143,11 +143,12 @@ class View:
         self.username=username
         self.partner_name=partner_name
 
+        
         ###
         #Make a new client object and store it in this instance of View
         #(i.e. self).  The name of the instance should be my_client
         ###
-
+        self.my_client=Client()
         ###
         #Set screen dimensions using turtle.setup
         #You can get help on this function, as with other turtle functions,
@@ -178,6 +179,9 @@ class View:
         #Create a TextBox instance and a SendButton instance and
         #Store them inside of this instance
         ###
+        self.textbox=TextBox()
+
+        self.sendbutton=SendButton()
                                    
 
         ###
