@@ -39,9 +39,10 @@ class TextBox(TextInput):
         self.writer.goto(self.pos)
         self.writer.penup()
 
+
 #write_msg      
     def write_msg(self):
-        slef.writer.penup()
+        self.writer.penup()
         self.writer.goto(-self.width/2+10+self.pos[0],self.pos[1]-self.height/2+20)
         self.writer.clear()
         self.writer(self.new_msg)
@@ -74,6 +75,32 @@ class SendButton(Button):
     def __init__(self,my_turtle=None,shape=None,pos=(0,0),view=None):
         super(SendButton,self).__init__(my_turtle,shape,pos)
         self.view=view
+
+        
+        if my_turtle is None :
+            self.turtle.hideturtle()
+            self.turtle=turtle.clone()
+        else:
+            self.turtle=my_turtle
+        
+        self.turtle.speed(0)
+        self.turtle.hideturtle()
+        self.turtle.penup()
+
+        if shape is None:
+            self.turtle.goto(0,-150)
+            self.turtle.shape('square')
+            self.turtle.shapesize(2,10)
+            self.turtle.fillcolor("Purple3")
+
+            
+
+        else:
+            turtle.addshape(shape)
+            self.turtle.shape(shape)
+        self.turtle.showturtle()
+        self.turtle.onclick(self.fun)
+        turtle.listen()
 
     def fun(self,x=None,y=None):
         self.view.send_msg()
@@ -114,6 +141,8 @@ class View:
         ###
         #Store the username and partner_name into the instance.
         ###
+        self.username=username
+        self.partner_name=partner_name
 
         ###
         #Make a new client object and store it in this instance of View
@@ -150,7 +179,6 @@ class View:
         #Create a TextBox instance and a SendButton instance and
         #Store them inside of this instance
         ###
-##        self.sendbutton=SendButton(self,
                                    
 
         ###
@@ -159,6 +187,10 @@ class View:
         ###
 
     def send_msg(self):
+        self.my_client.send(self.textbox.new_msg)
+        self.msg_queue.insert(0,self.textbox.new_msg)
+        self.textbox.clear_msg()
+        self.display_msg()
         '''
         You should implement this method.  It should call the
         send() method of the Client object stored in this View
@@ -168,7 +200,7 @@ class View:
         It should call self.display_msg() to cause the message
         display to be updated.
         '''
-        pass
+        
 
     def get_msg(self):
         return self.textbox.get_msg()
@@ -186,7 +218,7 @@ class View:
 
         Then, it can call turtle.listen()
         '''
-        pass
+
 
     def msg_received(self,msg):
         '''
@@ -209,7 +241,7 @@ class View:
         This method should update the messages displayed in the screen.
         You can get the messages you want from self.msg_queue
         '''
-        pass
+
 
     def get_client(self):
         return self.my_client
