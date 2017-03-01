@@ -72,13 +72,12 @@ class TextBox(TextInput):
 #Button is an abstract class with one abstract method: fun.
 #fun gets called whenever the button is clicked.  It's jobs will be to
 class SendButton(Button):
-    def __init__(self,my_turtle=None,shape=None,pos=(0,0),view=None):
+    def __init__(self,my_turtle=None,shape=None,pos=(0,-150),view=None):
         super(SendButton,self).__init__(my_turtle,shape,pos)
         self.view=view
 
         
         if my_turtle is None :
-            self.turtle.hideturtle()
             self.turtle=turtle.clone()
         else:
             self.turtle=my_turtle
@@ -88,7 +87,7 @@ class SendButton(Button):
         self.turtle.penup()
 
         if shape is None:
-            self.turtle.goto(0,-150)
+            self.turtle.goto(pos)
             self.turtle.shape('square')
             self.turtle.shapesize(2,10)
             self.turtle.fillcolor("Purple3")
