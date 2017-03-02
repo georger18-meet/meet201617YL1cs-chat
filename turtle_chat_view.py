@@ -24,6 +24,7 @@ class TextBox(TextInput):
 #
 #draw_box\
     def draw_box(self):
+        
         self.pos=(-200,-100)
         turtle.hideturtle()
         turtle.bgcolor("Orange")
@@ -159,7 +160,22 @@ class View:
         #You can use the clear() and write() methods to erase
         #and write messages for each
         ###
+##        object1=turtle.clone()
+##        self.object1=object1
+##
+##        object2=turtle.clone()
+##        self.object2=object2
+##
+##        object3=turtle.clone()
+##        self.object3=object3
+##
+##        object4=turtle.clone()
+##        self.object4=object4
 
+        object_list=[]
+        self.object_list=object_list
+        for i in range(3):
+            self.object_list.insert(0,turtle.clone())
 
         ###
         #Create a TextBox instance and a SendButton instance and
@@ -187,6 +203,7 @@ class View:
         self.msg_queue, to include this message.  It should
         clear the textbox text display (hint: use the clear_msg method).
         It should call self.display_msg() to cause the message
+        
         display to be updated.
         '''
         
@@ -212,6 +229,9 @@ class View:
 
 
     def msg_received(self,msg):
+        self.msg_queue.insert(0,msg)
+        self.display_msg()
+        
         '''
         This method is called when a new message is received.
         It should update the log (queue) of messages, and cause
@@ -228,10 +248,17 @@ class View:
         #Then, call the display_msg method to update the display
 
     def display_msg(self):
+        for i in range(3):
+            self.object_list[i].goto(-150,100+i*self._LINE_SPACING)
+            self.object_list[i].pendown()
+            self.object_list[i].write(self.msg_queue[i])
+            
+        
         '''
         This method should update the messages displayed in the screen.
         You can get the messages you want from self.msg_queue
         '''
+        pass
 
 
     def get_client(self):
