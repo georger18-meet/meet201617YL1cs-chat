@@ -78,30 +78,11 @@ class SendButton(Button):
         super(SendButton,self).__init__(my_turtle,shape,pos)
         self.view=view
 
-        
-        if my_turtle is None :
-            self.turtle=turtle.clone()
-        else:
-            self.turtle=my_turtle
-        
-        self.turtle.speed(0)
-        self.turtle.hideturtle()
-        self.turtle.penup()
-
         if shape is None:
             self.turtle.goto(pos)
             self.turtle.shape('square')
             self.turtle.shapesize(2,10)
             self.turtle.fillcolor("Purple3")
-
-            
-
-        else:
-            turtle.addshape(shape)
-            self.turtle.shape(shape)
-        self.turtle.showturtle()
-        self.turtle.onclick(self.fun)
-        turtle.listen()
 
     def fun(self,x=None,y=None):
         self.view.send_msg()
@@ -171,8 +152,7 @@ class View:
         #   self.msg_queue.append(a_msg_string)
         self.msg_queue=[]
         ###
-##        self.msg_queue.insert(0,a_msg_string)
-##        self.msg_queue.append(a_msg_string)
+
 
         ###
         #Create one turtle object for each message to display.
@@ -180,13 +160,14 @@ class View:
         #and write messages for each
         ###
 
+
         ###
         #Create a TextBox instance and a SendButton instance and
         #Store them inside of this instance
         ###
         self.textbox=TextBox()
 
-        self.sendbutton=SendButton()
+        self.sendbutton=SendButton(view=self)
                                    
 
         ###
@@ -216,11 +197,8 @@ class View:
     
 
     def setup_listeners(self):
-        self.setup_listeners()
-        turtle.onkeypress(self.send_btn.fun)
-        turtle.listen()
-
-        
+        self.send_button.fun()
+        turtle.listen() 
         '''
         Set up send button - additional listener, in addition to click,
         so that return button will send a message.
