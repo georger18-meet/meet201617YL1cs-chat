@@ -44,8 +44,9 @@ class TextBox(TextInput):
     def write_msg(self):
         self.writer.penup()
         self.writer.write('')
-        self.writer.goto(-self.width/2+10+self.pos[0],self.pos[1]-self.height/2+20)
+        self.writer.goto(-180,self.height-30)
         self.writer.clear()
+        self.writer.write(self.new_msg)
 
 
 #Hints:
